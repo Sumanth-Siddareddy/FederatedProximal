@@ -1,5 +1,5 @@
 
-# Title: Federated Proximal Algorithm for Brain Tumor Classification : Addressing Non-IID Challenges with Data Augmentation
+# Title: Improving Brain Tumor Classification with Federated Proximal: Solving Non-IID Challenges Using Data Augmentation
 
 ## Description
 We developed a hybrid federated learning framework using FedProx and ResNet50 to improve model accuracy on uneven healthcare data while preserving privacy. By applying data augmentation to non-IID data, our method achieved strong performance, making training more balanced and effective.
