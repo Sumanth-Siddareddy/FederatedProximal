@@ -4,7 +4,7 @@
 ## Description
 We developed a hybrid federated learning framework using FedProx and ResNet50 to improve model accuracy on uneven healthcare data while preserving privacy. By applying data augmentation to non-IID data, our method achieved strong performance, making training more balanced and effective.
 
-## Dataset Information
+## Dataset Information and load data
 - **Source:** [Brain Tumor MRI Dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
 - **Classes:** Glioma, Meningioma, Pituitary, No Tumor
 - **Size:** 5712 training images and 1311 test images
@@ -18,6 +18,9 @@ We developed a hybrid federated learning framework using FedProx and ResNet50 to
       -  Rotation: ±90
       - Width and Height Shifts: ±10%
       - Horizontal and Vertical Flips: Randomly applied
+
+- **Load Data:** 
+   The dataset has two folders training and testing already, and we use training, testing set to split among all the clients in NON-IID format, train the model using fedprox algorithm and we keep a copy of original testing data (1311 images) for evaluating the model 
 
 ## Code Information
 - **Language:** Python
