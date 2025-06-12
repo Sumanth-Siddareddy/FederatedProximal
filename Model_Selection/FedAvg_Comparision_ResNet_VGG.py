@@ -39,13 +39,13 @@ resnet_avg_accuracy = np.mean(resnet_accuracies)
 vgg_avg_accuracy = np.mean(vgg_accuracies)
 
 # Bar Graph
-models = ["ResNet 50 + CBAM", "VGG 19 + CBAM"]
+models = ["ResNet 50", "VGG 19"]
 avg_accuracies = [resnet_avg_accuracy, vgg_avg_accuracy]
 
 plt.figure(figsize=(10, 7))
 plt.bar(models, avg_accuracies, color=[rgb(135, 206, 250), rgb(144, 238, 144)])
 plt.ylabel("Average Test Accuracy (%)")
-plt.title("Comparison of ResNet 50 + CBAM and VGG 19 + CBAM on FedAvg")
+plt.title("Comparison of ResNet 50 and VGG 19 on FedAvg")
 plt.ylim(20, 60)
 plt.savefig("FedAvg_Comparision.pdf", dpi=500, bbox_inches='tight')
 plt.show()

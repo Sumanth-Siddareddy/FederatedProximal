@@ -1,4 +1,4 @@
-# ---------------------- Standalone performance ---------------------------------------
+# ---------------------- Standalone performance of 'ResNet50', 'ResNet18', 'VGG19' models on NON-IID data ---------------------------------------
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -6,7 +6,7 @@ def rgb(r, g, b):
     return (r / 255, g / 255, b / 255)
 
 # Model names
-models = ['ResNet50+CBAM', 'ResNet18+CBAM', 'VGG19+CBAM']
+models = ['ResNet50', 'ResNet18', 'VGG19']
 
 # Metrics
 metrics = ['Accuracy', 'Precision', 'Recall', 'F1 Score', 'Loss']

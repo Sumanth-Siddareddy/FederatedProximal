@@ -3,7 +3,7 @@ import numpy as np
 
 # Function to convert RGB to a matplotlib color
 def rgb(r, g, b):
-    return (r / 255, g / 255, b / 255)  # Normalize to [0, 1] range
+    return (r / 255, g / 255, b / 255)
 
 # Data for the models
 metrics = {
@@ -45,44 +45,50 @@ metrics = {
 }
 
 
-
-
-# Metrics to plot
 metrics_names = ['Accuracy', 'Loss', 'Precision', 'Recall', 'F1 Score']
 colors = ['skyblue', 'lightgreen', 'lightcoral', 'thistle', 'peachpuff']
-
-# Training rounds
-rounds = [i * 10 for i in range(1, 11)]  
+rounds = [i * 10 for i in range(1, 11)]
 mu_values = list(metrics.keys())
-x = np.arange(len(rounds))  
+x = np.arange(len(rounds))
 
-# Plot grouped bar charts for each metric
 for metric in metrics_names:
-    fig, ax = plt.subplots(figsize=(12, 10))  # Increased figure size
-    width = 0.13 
+    fig, ax = plt.subplots(figsize=(14, 10))  # Large figure size
+    width = 0.13
 
     for i, model in enumerate(mu_values):
         data = metrics[model][metric]
         ax.bar(x + i * width, data, width, label=model, color=colors[i])
 
-    # Set properties with bigger fonts
-    ax.set_title(f'Comparison of {metric} Across Models', fontsize=20, fontweight='bold')
-    ax.set_xlabel('Training Rounds', fontsize=20, fontweight='bold', labelpad=12)
-    ax.set_ylabel(metric, fontsize=18, fontweight='bold')
-    ax.set_xticks(x + width / 2)  
-    ax.set_xticklabels(rounds, fontsize=18)
-    ax.tick_params(axis='y', labelsize=18)  # Set Y-axis number font size to 14
+    # Axis titles and ticks
+    ax.set_title(f'{metric} Comparison Across Models', fontsize=24, fontweight='bold', pad=20)
+    ax.set_xlabel('Training Rounds', fontsize=22, fontweight='bold', labelpad=12)
+    ax.set_ylabel(metric, fontsize=22, fontweight='bold', labelpad=12)
+    ax.set_xticks(x + width * (len(mu_values) / 2 - 0.5))
+    ax.set_xticklabels(rounds, fontsize=18, fontweight='bold')
+    ax.tick_params(axis='y', labelsize=18)
+    ax.tick_params(axis='x', labelsize=18)
 
+    # Make y-tick labels bold
+    for label in ax.get_yticklabels():
+        label.set_fontweight('bold')
 
-    # Improve legend visibility
-    ax.legend(title='', fontsize=19, title_fontsize=20, loc='center', bbox_to_anchor=(0.5, 1.12), ncol=len(mu_values))
+    # Make legend bold
+    legend = ax.legend(
+        title='Mu Values',
+        fontsize=18,
+        title_fontsize=22,
+        loc='upper center',
+        bbox_to_anchor=(0.5, -0.15),
+        ncol=len(mu_values),
+        frameon=False
+    )
+    for text in legend.get_texts():
+        text.set_fontweight('bold')
 
-    # Grid for readability
+    # Grid
     ax.grid(axis='y', linestyle='--', alpha=0.7)
 
-    # Adjust layout to prevent cutting
-    plt.subplots_adjust(bottom=0.11)  # Adds space below for labels
-
-    # Save without cutting labels
-    plt.savefig(f"{metric}_comparison_plot.pdf", dpi=2000, pad_inches=0)
+    # Save with tight layout
+    plt.tight_layout()
+    plt.savefig(f"{metric}_comparison_plot.pdf", dpi=600, bbox_inches='tight')
     plt.show()
