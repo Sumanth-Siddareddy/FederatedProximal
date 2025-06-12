@@ -85,8 +85,8 @@ We developed a hybrid federated learning framework using FedProx and ResNet50 to
 - **RAM:** 16GB
 
 ## Limitations
-- Integrate BlockChain to improve privacy.
-- Integrate user incentive mechanism for client motivation is not yet done
+- Integration of blockchain to enhance privacy has not yet been implemented.
+- A user incentive mechanism to motivate client participation is also lacking.
 
 ## Citations
 - Li, T., Sahu, A. K., Zaheer, M., Sanjabi, M., Talwalkar, A., and Smith, V. (2020). Federated optimization in heterogeneous networks. Proceedings of Machine learning and systems, 2:429–450.
