@@ -51,10 +51,17 @@ The increasing use of electronic health records has transformed healthcare manag
 - os
 
 ## Methodology
-- Data augmentation using Keras' `ImageDataGenerator` (rotation, shift, zoom).
-- A pre-trained ResNet50 model was fine-tuned on the MRI dataset.
-- Evaluation includes hold-out validation and cross-validation.
-- Model hyperparameters were tuned via grid search.
+### 1) Data Preparation
+   - Data Splitting into NON-IID format (To simulate real world scenario).
+   - Calculate Jensen-Shannon Divergence of NON-IID dataset.
+### 2) Model Selection :
+   - Among ResNet18, ResNet50, VGG19 select best performed model on NON-IID dataset (ResNet50 and VGG19 perform well)
+   - Comparision of ResNet50 and VGG19 based on thier performance on FedAvg. (ResNet50 perform well)
+### 3) Data Agumentation
+### 4) Integrate Attention Head to ResNet50 (Proposed model)
+### 5) Federated Proximal Implementation using proposed FL Architecture
+### 6) Training the clients and update the global model with trained model weights of client models and test the client models with the data clients have.
+### 7) Evaluate the global model using Held-Out testing and record the accuracy metrics like Accuracy, Loss, F1 Score, Precision, Recall.
 
 ## Evaluation Method
 - **Validation Strategy:** Held-out test
