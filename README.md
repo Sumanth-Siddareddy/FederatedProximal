@@ -12,12 +12,7 @@ We developed a hybrid federated learning framework using FedProx and ResNet50 to
 - **Preprocessing:**
    - Data pre-processing, all images were normalized to pixel values in the range [0, 1].
    - Images were resized to a consistent input size of 224 × 224 pixels, suitable for the ResNet50 architecture.
-   - Data Agumentation :
-      - Shear: ±20%
-      - Zoom: ±20%
-      -  Rotation: ±90
-      - Width and Height Shifts: ±10%
-      - Horizontal and Vertical Flips: Randomly applied
+   - Data Agumentation 
 
 - **Load Data:** 
    The dataset has two folders training and testing already, and we use training, testing set to split among all the clients in NON-IID format, train the model using fedprox algorithm and we keep a copy of original testing data (1311 images) for evaluating the model 
