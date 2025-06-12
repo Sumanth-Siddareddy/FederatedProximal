@@ -61,10 +61,10 @@ The increasing use of electronic health records has transformed healthcare manag
 ### 4) Integrate Attention Head to ResNet50 (Proposed model)
 ### 5) Federated Proximal Implementation using proposed FL Architecture
 ### 6) Training the clients and update the global model with trained model weights of client models and test the client models with the data clients have.
-### 7) Evaluate the global model using Held-Out testing and record the accuracy metrics like Accuracy, Loss, F1 Score, Precision, Recall.
+### 7) Evaluate the global model using Hold-Out testing and record the accuracy metrics like Accuracy, Loss, F1 Score, Precision, Recall.
 
 ## Evaluation Method
-- **Validation Strategy:** Held-out test
+- **Validation Strategy:** Hold-out test
 - The global model was periodically evaluated every 10 rounds on a held-out centralized test set over 100 communication rounds.
 - The test set remains constant, and you're not changing splits across folds.
 - This is better described as periodic evaluation on a held-out test set rather than cross-validation
