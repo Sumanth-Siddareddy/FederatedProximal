@@ -24,12 +24,11 @@ We developed a hybrid federated learning framework using FedProx and ResNet50 to
 
 ## Code Information
 - **Language:** Python
-- **Framework:** TensorFlow and PyTorch
-- **Model:** VGG19 fine-tuned for multi-class classification
-- **Loss Function:** Categorical Crossentropy
+- **Frameworks:** TensorFlow and PyTorch
+- **Model & Architecture:** Proposed Model Architecture - ResNet50 with Attention Head, Proposed FL Architecture
+- **Loss Function:** Categorical Crossentropy, sparse_softmax_cross_entropy
 - **Optimizer:** SGD, Adam
-- **Regularization:** Dropout, L2, etc.
-- **Training Strategy:** Custom training loop or `model.fit()`
+- **Regularization:** Dropout
 
 ## Usage Instructions
 
