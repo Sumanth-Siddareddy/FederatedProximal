@@ -2,21 +2,29 @@
 # Title: Federated Proximal Algorithm for Brain Tumor Classification : Addressing Non-IID Challenges with Data Augmentation
 
 ## Description
-This project implements an AI-based application using deep learning ResNet50 architecture to classify brain MRI images into categories such as Glioma, Meningioma, Pituitary, and No Tumor. The primary objective is to explore the real-world utility of deep learning for tumor detection and classification in a medical imaging context.
+The increasing use of electronic health records has transformed healthcare management, yet data sharing among institutions remains challenging due to privacy concerns. Federated learning (FL), a collaborative learning approach, enables model training across distributed data sources while preserving data privacy. However, handling non-independent and identically distributed (non-IID) data poses a significant obstacle to achieving robust global model performance. To overcome these issues, we proposed a hybrid framework to leverage the usage of the Federated Proximal (FedProx) algorithm by considering the ResNet50 architecture. We artificially partitioned IID data into non-IID subsets to simulate real-world conditions. Then, by applying data augmentation techniques, we transformed the non-IID datasets into more uniform distributions. We monitored global model performance of the hybrid framework over 100 training rounds with varying values of the regularization parameter in FedProx. Our proposed approach achieved an accuracy of up to 97.71\% with IID data and 87.19\% in an extreme case of Non-IID data, with precision, recall, and F1 scores also showing significant results. Our study highlights the significance of combining data augmentation and FedProx to reduce data imbalance issues in FL, ensuring equitable and efficient model training across distributed healthcare datasets. Our work contributes to better solutions for privacy-preserving in healthcare applications.
 
 ## Dataset Information
-- **Source:** [Mention dataset name/source, e.g., Brain Tumor Dataset from Kaggle or custom collected]
+- **Source:** [Brain Tumor MRI Dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
 - **Classes:** Glioma, Meningioma, Pituitary, No Tumor
-- **Size:** [e.g., 3,264 training images and 800 test images]
-- **Format:** JPEG/PNG grayscale or RGB images
-- **Preprocessing:** Resizing to 224x224, normalization, data augmentation (if any)
+- **Size:** 5712 training images and 1311 test images
+- **Format:** JPG images
+- **Preprocessing:**
+   - Data pre-processing, all images were normalized to pixel values in the range [0, 1].
+   - Images were resized to a consistent input size of 224 × 224 pixels, suitable for the ResNet50 architecture.
+   - Data Agumentation :
+      - Shear: ±20%
+      - Zoom: ±20%
+      -  Rotation: ±90
+      - Width and Height Shifts: ±10%
+      - Horizontal and Vertical Flips: Randomly applied
 
 ## Code Information
 - **Language:** Python
-- **Framework:** TensorFlow/Keras (or PyTorch)
+- **Framework:** TensorFlow and PyTorch
 - **Model:** VGG19 fine-tuned for multi-class classification
 - **Loss Function:** Categorical Crossentropy
-- **Optimizer:** Adam (or other, specify)
+- **Optimizer:** SGD
 - **Regularization:** Dropout, L2, etc.
 - **Training Strategy:** Custom training loop or `model.fit()`
 
@@ -27,23 +35,6 @@ This project implements an AI-based application using deep learning ResNet50 arc
    git clone https://github.com/Sumanth-Siddareddy/FederatedProximal
    ```
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Prepare dataset:
-   Place dataset in `./dataset/train` and `./dataset/test` following subdirectory structure by class.
-
-4. Run training:
-   ```bash
-   python train.py
-   ```
-
-5. Evaluate model:
-   ```bash
-   python evaluate.py
-   ```
 
 ## Requirements
 - numpy==1.23.5
@@ -56,9 +47,8 @@ This project implements an AI-based application using deep learning ResNet50 arc
 - opencv-python==4.10.0
 - torch==2.0.1
 - torchvision
-- torchaudio
 - jupyterlab==3.5.2
-
+- os
 
 ## Methodology
 - Data augmentation using Keras' `ImageDataGenerator` (rotation, shift, zoom).
@@ -73,18 +63,17 @@ This project implements an AI-based application using deep learning ResNet50 arc
 - This is better described as periodic evaluation on a held-out test set rather than cross-validation
 - Evaluation metrics include accuracy, loss, precision, recall, and F1 score. This approach enabled tracking of model convergence and generalization performance across training
 
+- Specifically, we examined the influence of variations in the μ parameter in FedProx, and several key hyperparameters (such as learning rate and patience). By analyzing the performance metrics for each configuration, we were able to identify the relative contribution of each factor to the final outcome, providing insights into their roles in optimizing federated learning models.
+
 
 ## Assessment Metrics
-- **Accuracy:** Overall classification accuracy.
-- **Precision, Recall, F1-Score:** Evaluated per class to handle class imbalance.
-- **Confusion Matrix:** Visual analysis of classification performance.
-- **Justification:** Given the clinical significance, recall and F1-score are emphasized to reduce false negatives.
+- **Accuracy, Precision, Recall, F1-Score, Loss:** Global model was periodically evaluated every 10 rounds on a held-out centralized test set over 100 communication rounds on these metrics.
+- **Line plot, Bar-graphs, Confusion Matrix:** Visual analysis of classification performance.
 
 ## Computing Infrastructure
 - **OS:** Windows 11
-- **GPU:** NVIDIA 
+- **GPU:** NVIDIA (DGX)
 - **RAM:** 16GB
-- **Software:** Python 3.8, TensorFlow, PyTorch
 
 ## Limitations
 - Integrate BlockChain to improve privacy.
@@ -93,5 +82,3 @@ This project implements an AI-based application using deep learning ResNet50 arc
 ## Citations
 - Li, T., Sahu, A. K., Zaheer, M., Sanjabi, M., Talwalkar, A., and Smith, V. (2020). Federated optimization in heterogeneous networks. Proceedings of Machine learning and systems, 2:429–450.
 - McMahan, B., Moore, E., Ramage, D., Hampson, S., and y Arcas, B. A. (2017). Communication-efficient learning of deep networks from decentralized data. pages 1273–1282.
-
-
